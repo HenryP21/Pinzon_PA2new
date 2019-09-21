@@ -9,7 +9,8 @@ double avg; /*the average calculated*/
 int lowestsum = 500; /*the total score cannot be larger than this number*/
 int largestsum = 0; /*the total score can be larger than this number*/
 int totalscore = 0;
-char userInput; /*the character determining if another user will answewr the survey*/
+char userInput;/*the character determining if another user will answewr the survey*/
+int usernum = 0; /*the number of users that answer survey*/
 String largeTopic = ""; /*the topic with the highest score*/
 String lowTopic = ""; /*the topic with the lowest score*/
 
@@ -24,8 +25,10 @@ for(int i = 0; i < 5; ++i) { /*this loop prints out every topic and allows the u
 }
 
 System.out.println("Would another user like to take the survey? (y or n): ");
-userInput = scnr.next().charAt(0); /*if the user answers 'n' then the survey stops running and the table is displayed*/
+userInput = scnr.next().charAt(0);/*if the user answers 'n' then the survey stops running and the table is displayed*/
+usernum++;
 if(userInput != 'y') {
+	
 	break;
 }
 }
@@ -52,7 +55,7 @@ System.out.println("-----------------------------------------------------"
 
 for(int i = 0;i <5; ++i) {
 	System.out.println(topics[i]); /*prints the topics in the array*/
-	totalscore = 0;
+	totalscore = 0; /*0 is the initial value of all ratings for all topics*/
 
 	
 	for(int j = 1; j <= 10; ++j) {
@@ -62,7 +65,7 @@ for(int i = 0;i <5; ++i) {
 	
 	}
 	
-	avg = (totalscore/10.0);
+	avg = (totalscore/usernum);
 	System.out.printf("  |  %.2f\n", avg);
 	
 	if(largestsum< totalscore) { /*Gathers the largest total along with the topic containing said rating*/
